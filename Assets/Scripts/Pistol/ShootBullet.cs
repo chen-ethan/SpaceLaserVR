@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootBullet : VRTK.VRTK_InteractableObject
-{
+public class ShootBullet : VRTK.VRTK_InteractableObject {
 
     private float timer = 0.0f;
 
@@ -13,7 +12,6 @@ public class ShootBullet : VRTK.VRTK_InteractableObject
     protected VRTK.VRTK_ControllerEvents controllerEvents;
     public GameObject muzzle;
 
-    // Use this for initialization
 
     public override void StartUsing(VRTK.VRTK_InteractUse currentUsingObject = null)
     {
@@ -27,10 +25,9 @@ public class ShootBullet : VRTK.VRTK_InteractableObject
         controllerEvents = null;
     }
 
-    // Update is called once per frame
     protected override void Update () {
         timer += Time.deltaTime;
-        if (controllerEvents.triggerPressed && timer >= fireDelay) {
+        if (controllerEvents && controllerEvents.triggerPressed && timer >= fireDelay) {
             Shoot();
         }
 	}
