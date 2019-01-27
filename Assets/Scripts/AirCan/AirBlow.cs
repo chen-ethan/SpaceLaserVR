@@ -48,7 +48,7 @@ public class AirBlow : VRTK.VRTK_InteractableObject
     }
 
     protected void Blow(float power){
-        Debug.Log("BS:" + blowStrength + "\t Power: " + power);
+        //Debug.Log("BS:" + blowStrength + "\t Power: " + power);
         player.AddForce(nozzle.transform.up * blowStrength * power,ForceMode.Force);
     }
 

@@ -597,7 +597,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa31935730602684ca098655260a7c33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightObjectPrefab: {fileID: 0}
+  highlightObjectPrefab: {fileID: 1408854172819824, guid: 48b73d1d0fd813e4da9ebca1952176bb,
+    type: 2}
   snapType: 2
   snapDuration: 0
   applyScalingOnSnap: 0

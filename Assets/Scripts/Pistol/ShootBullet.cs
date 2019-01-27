@@ -6,11 +6,19 @@ public class ShootBullet : VRTK.VRTK_InteractableObject {
 
     private float timer = 0.0f;
 
-    public Transform laser;
+
+    //public Transform laser;
 
     public float fireDelay;
+    public float range;
+    public float dmg;
+    public float laserDuration;
     protected VRTK.VRTK_ControllerEvents controllerEvents;
     public GameObject muzzle;
+
+    public ParticleSystem muzzleFlash;
+
+    public LineRenderer laserLine;
 
 
     public override void StartUsing(VRTK.VRTK_InteractUse currentUsingObject = null)
@@ -34,7 +42,42 @@ public class ShootBullet : VRTK.VRTK_InteractableObject {
 
     void Shoot() {
         Debug.Log("Shooting");
-        Instantiate(laser,muzzle.transform.position,muzzle.transform.rotation);
+        muzzleFlash.Play();
+        laserLine.SetPosition(0, muzzle.transform.position);
+        //Instantiate(laser,muzzle.transform.position,muzzle.transform.rotation);
+        StopCoroutine(ShotEffect());
+        StartCoroutine(ShotEffect());
+        RaycastHit hit;
+        if (Physics.Raycast(muzzle.transform.position, muzzle.transform.forward, out hit, range))
+        {
+            Debug.Log(hit.transform.name);
+            Target t = hit.transform.GetComponent<Target>();
+            if (t)
+            {
+                t.TakeDamage(dmg);
+            }
+            //ParticleSystem flash = Instantiate(muzzleFlash, hit.point, Quaternion.LookRotation(hit.normal));
+            //Destroy(flash,1f);
+            laserLine.SetPosition(1, hit.point);
+            Debug.Log("Hit something");
+
+
+        }
+        else
+        {
+            laserLine.SetPosition(1, muzzle.transform.position + (muzzle.transform.forward * range));
+            Debug.Log("Missed");
+
+        }
         timer = 0.0f;
+    }
+
+    private IEnumerator ShotEffect()
+    {
+        laserLine.enabled = true;
+        yield return new WaitForSeconds(laserDuration);
+        Debug.Log("Destroy laser");
+        //Destroy(laserLine);
+        laserLine.enabled = false;
     }
 }
