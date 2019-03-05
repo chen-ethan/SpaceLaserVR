@@ -516,7 +516,7 @@ MonoBehaviour:
   highlightColor: {r: 0.8867924, g: 0.86864394, b: 0.24679601, a: 1}
   validHighlightColor: {r: 0, g: 0, b: 0, a: 0}
   highlightAlwaysActive: 0
-  validObjectListPolicy: {fileID: 0}
+  validObjectListPolicy: {fileID: 114202977099050630}
   displayDropZoneInEditor: 1
   defaultSnappedInteractableObject: {fileID: 0}
   defaultSnappedObject: {fileID: 0}
